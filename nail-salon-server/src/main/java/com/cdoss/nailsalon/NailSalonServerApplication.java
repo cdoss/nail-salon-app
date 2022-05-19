@@ -1,4 +1,4 @@
-package com.doss.nailsalonapp.nailsalonserver;
+package com.cdoss.nailsalon;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
