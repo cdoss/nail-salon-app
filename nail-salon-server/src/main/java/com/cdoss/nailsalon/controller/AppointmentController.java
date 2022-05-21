@@ -38,8 +38,11 @@ public class AppointmentController {
     private AppointmentDto convertToDto(Appointment appointment) {
         AppointmentDto dto = modelMapper.map(appointment, AppointmentDto.class);
         NailTechnician nailTechnician = appointment.getNailTechician();
-        String technicianName = nailTechnician.getFirstName() + " " + nailTechnician.getLastName();
-        dto.setName(technicianName);
+        String technicianName = nailTechnician.getFirstName();
+        if (nailTechnician.getLastName() != null) {
+            technicianName.concat(" " + nailTechnician.getLastName());
+        }
+        dto.setNailTechnician(technicianName);
         return dto;
     }
 }
