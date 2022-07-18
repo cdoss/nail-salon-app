@@ -17,4 +17,9 @@ public class TechnicianServiceImpl implements TechnicianService {
     public List<NailTechnician> getAllTechnicians() {
         return nailTechnicianRepository.findAll();
     }
+
+	@Override
+	public NailTechnician saveTechnician(NailTechnician technician) {
+		return nailTechnicianRepository.save(technician);
+	}
 }

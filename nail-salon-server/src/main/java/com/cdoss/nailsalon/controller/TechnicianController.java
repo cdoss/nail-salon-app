@@ -6,6 +6,8 @@ import com.cdoss.nailsalon.service.TechnicianService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -33,8 +35,20 @@ public class TechnicianController {
         return technicianDtos;
     }
 
+    @PostMapping("/technicians")
+    public TechnicanDto saveTechnician(@RequestBody TechnicanDto technicianDto) {
+    	NailTechnician nailTechnician = convertToEntity(technicianDto);    	
+    	technicianService.saveTechnician(nailTechnician);
+    	return technicianDto;
+    }
+
     private TechnicanDto convertToDomain(NailTechnician technician) {
         TechnicanDto dto = modelMapper.map(technician, TechnicanDto.class);
         return dto;
+    }
+    
+    private NailTechnician convertToEntity(TechnicanDto dto) {
+    	NailTechnician technician = modelMapper.map(dto, NailTechnician.class);
+    	return technician;
     }
 }
